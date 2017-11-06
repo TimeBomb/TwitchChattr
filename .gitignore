@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Private configuration
+private.config.js
