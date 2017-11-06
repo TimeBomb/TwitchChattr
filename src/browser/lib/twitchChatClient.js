@@ -1,5 +1,5 @@
 let tmi = require('tmi.js');
-const CONFIG = require('../app.config.js');
+const CONFIG = require('../../../app.config.js').CHAT;
 
 module.exports = class TwitchChatClient {
     /*
@@ -16,12 +16,13 @@ module.exports = class TwitchChatClient {
 
         this.chatClient = new tmi.Client({
             options: {
-                debug: CONFIG.CHAT.DEBUG
+                debug: CONFIG.DEBUG
             },
             connection: {
                 reconnect: true,
                 secure: true
             },
+            // TODO: Can probably just use config's username/password here instead of requiring options
             identity: {
                 username: options.username,
                 password: options.password

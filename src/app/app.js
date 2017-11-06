@@ -1,7 +1,7 @@
 let electron = require('electron');
 let BrowserWindow = electron.BrowserWindow;
 let app = electron.app;
-const CONFIG = require('../app.config.js');
+const CONFIG = require('../../app.config.js'); // TODO: Change require default dir to root dir so we can avoid '../../'
 
 module.exports = class App {
     constructor(options) {

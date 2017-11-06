@@ -1,5 +1,5 @@
 let App = require('./app.js');
 
 let app = new App({
-    url: `file://${__dirname}/client/index.html`
+    url: `file://${__dirname}/../browser/index.html`
 });
