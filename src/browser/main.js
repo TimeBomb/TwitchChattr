@@ -1,6 +1,7 @@
 let TwitchChatClient = require('./lib/twitchChatClient.js');
 let MessageFilter = require('./lib/messageFilter.js');
 const CONFIG = require('../../private.config.js');
+const CHAT_CONFIG = require('../../app.config.js').CHAT;
 
 // TODO: UX for initial user configuration for user/pass (set up in private.config.js)
 
@@ -23,15 +24,11 @@ function newMessage(message, from, to) {
     $chat.scrollTop = $chat.scrollHeight - $chat.clientHeight; // Scroll to bottom; TODO: Find a better space for this. And organize the rest of this file while you're at it.
 }
 
-let chatClient = new TwitchChatClient({
-    username: CONFIG.username,
-    password: CONFIG.password,
-    debug: true,
-    channels: ['#vinesauce'] // TODO: Remove this when we have proper channel support; this is only for debugging (set to popular, active channel)
-});
+let chatClient = new TwitchChatClient();
 
 chatClient.on("chat", function (channel, userState, message, self) {
     // TODO: When adding support for chatting, make sure to instantly append your own chat messages
+    // Don't see your own messages that were already instantly appended
     if (self) {
         return;
     }
