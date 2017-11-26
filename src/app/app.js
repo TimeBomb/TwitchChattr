@@ -1,6 +1,6 @@
-let electron = require('electron');
-let BrowserWindow = electron.BrowserWindow;
-let app = electron.app;
+const electron = require('electron');
+const BrowserWindow = electron.BrowserWindow;
+const app = electron.app;
 const CONFIG = require('../../app.config.js'); // TODO: Change require default dir to root dir so we can avoid '../../'
 
 module.exports = class App {
@@ -9,6 +9,7 @@ module.exports = class App {
         
         app.on('ready', function() {
             this.window = new BrowserWindow(options);
+            this.window.maximize();
             if (options.url) {
                 this.window.loadURL(options.url);
             }

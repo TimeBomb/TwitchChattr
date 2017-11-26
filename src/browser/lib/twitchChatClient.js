@@ -1,4 +1,4 @@
-let tmi = require('tmi.js');
+const tmi = require('tmi.js');
 const CHAT_CONFIG = require('../../../app.config.js').CHAT;
 const USER_CONFIG = require('../../../private.config.js');
 

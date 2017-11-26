@@ -28,7 +28,7 @@ module.exports = class MessageFilter {
         var isSimilar = this.recentMessages.some(function(recentMessage) {
             if (getStringSimilarity(recentMessage, message).similarity > CONFIG.SIMILARITY_LIMIT) {
                 messageFilter.messagesFiltered++;
-                console.warn('TOO SIMILAR:', recentMessage, message, getStringSimilarity(recentMessage, message));
+                // console.warn('TOO SIMILAR:', recentMessage, message, getStringSimilarity(recentMessage, message));
                 return true;
             }
         });

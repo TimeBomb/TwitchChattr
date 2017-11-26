@@ -2,17 +2,25 @@
 <html>
     <head>
         <title>Hello world</title>
-        <script>
-            require('./main.js');
-        </script>
+        <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+        <script type="text/javascript">
+            require('electron-jsx-hotload')('.jsx');
+        </script> 
     </head>
-    <body style="height: 100%;">
-        <div class="statistics">
+    <body>
+        <div id="app"></div>
+        <!-- <div class="statistics">
             <b>Similar Messages Not Shown:</b>
             <span id="messagesFiltered">0</span>
         </div>
-        <div class="container" style="height: 100%">
+        <div class="container" style="display: inline-block; height: 100%; width: 49%;">
             <div id="chat" style="display: block; overflow-y: scroll; height: 400px;"></div>
         </div>
+        <div class="container" style="display: inline-block; width: 49%;">
+            <div id="player"></div>
+        </div> -->
+        <script>
+            require('./main.jsx');
+        </script>
     </body>
 </html>

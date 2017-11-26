@@ -1,11 +1,16 @@
 let TwitchChatClient = require('./lib/twitchChatClient.js');
 let MessageFilter = require('./lib/messageFilter.js');
+let TwitchLivestream = require('./lib/twitchLivestream.js');
 const CONFIG = require('../../private.config.js');
 const CHAT_CONFIG = require('../../app.config.js').CHAT;
 
 // TODO: UX for initial user configuration for user/pass (set up in private.config.js)
 
 let messageFilter = new MessageFilter();
+
+function initLivestream() {
+    new TwitchLivestream('player');
+}
 
 // TODO: Multi-channel support leveraging `to`
 function newMessage(message, from, to) {
@@ -42,4 +47,5 @@ chatClient.on('connected', function() {
 window.onload = function() {
     newMessage('Connecting...', 'Server');
     chatClient.connect();
+    initLivestream();
 };
