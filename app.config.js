@@ -8,6 +8,7 @@ module.exports = {
         CHANNELS: ['#moonmoon_ow']
     },
     MESSAGE_FILTER: {
+        DEBUG: false,
         RECENT_MESSAGES_EXPIRATION_MS: 30000,
         SIMILARITY_LIMIT: 0.6
     }

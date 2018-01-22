@@ -1,15 +1,14 @@
 const CONFIG = require('../../../app.config.js').MESSAGE_FILTER;
-let getStringSimilarity = require('damerau-levenshtein');
+const getStringSimilarity = require('damerau-levenshtein');
 
-// TODO: Polish this... a lot. This currently isn't much more than a proof of concept.
 module.exports = class MessageFilter {
     constructor() {
         this.recentMessages = [];
         this.messagesFiltered = 0;
-        let messageFilter = this;
 
-        setInterval(function() {
-            messageFilter.recentMessages = [];
+        // TODO: Clean this up or implement this better, so if we leave a channel, this interval doesn't keep triggering
+        setInterval(() => {
+            this.recentMessages = []; // TODO: Make sure `this` is correct `this`
         }, CONFIG.RECENT_MESSAGES_EXPIRATION_MS);
     }
 
@@ -24,11 +23,12 @@ module.exports = class MessageFilter {
      * returns boolean If message should be filtered, i.e. if it is similar (true) or not (false)
      */
     filterMessage(message) {
-        var messageFilter = this;
-        var isSimilar = this.recentMessages.some(function(recentMessage) {
+        var isSimilar = this.recentMessages.some((recentMessage) => {
             if (getStringSimilarity(recentMessage, message).similarity > CONFIG.SIMILARITY_LIMIT) {
-                messageFilter.messagesFiltered++;
-                // console.warn('TOO SIMILAR:', recentMessage, message, getStringSimilarity(recentMessage, message));
+                this.messagesFiltered++; // TODO: Check that `this` is the correct `this`
+                if (config.DEBUG) {
+                    console.warn('TOO SIMILAR:', recentMessage, message, getStringSimilarity(recentMessage, message));
+                }
                 return true;
             }
         });

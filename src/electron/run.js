@@ -1,5 +1,5 @@
-let App = require('./app.js');
+const Window = require('./Window.js');
 
-let app = new App({
+new Window({
     url: `file://${__dirname}/../browser/index.html`
 });
